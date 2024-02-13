@@ -3,7 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
+import background from "../img/bg-stars.jpg";
 import { Home } from "./pages/home";
+import { ExperiencePage } from "./pages/experiencePage";
+import { WorkProjectsPage } from "./pages/workProjectsPage";
+import { ContactPage } from "./pages/contactPage";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -18,15 +22,22 @@ const Layout = () => {
     const basename = process.env.BASENAME || "";
 
     if(!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL/ >;
+    
 
     return (
-        <div>
+        <div style={{
+            backgroundImage: `url(${background})`,
+            
+        }}>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Demo />} path="/demo" />
+                        <Route element={<WorkProjectsPage />} path="/workpage" />
+                        <Route element={<ExperiencePage />} path="/experiencepage" />
+                        <Route element={<ContactPage />} path="/contactpage" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
